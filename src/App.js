@@ -42,12 +42,18 @@ function App() {
   }
 
   return (
-    <div className="app">
-      <h1>Tic Tac Toe</h1>
-      <StatusMessage winner={winner} current={current} />
-      <Board board={current.board} handleSquareClick={handleSquareClick} winnerSquares={winnerSquares} />
-      <button onClick={onNewGame} type="button">New game</button>
-      <History history={history} moveTo={(move) => { setCurrentMove(move) }} currentMove={currentMove} />
+    <div className="container">
+      <div>
+        <div className="container__item">
+          <h1>Let&rsquo;s Play the Tic-Tac-Toe Game!</h1>
+          <button onClick={onNewGame} type="button">New game</button>
+        </div>
+        <div className="container__item">
+          <StatusMessage winner={winner} current={current} />
+          <Board board={current.board} handleSquareClick={handleSquareClick} winnerSquares={winnerSquares} />
+          {/* <History history={history} moveTo={(move) => { setCurrentMove(move) }} currentMove={currentMove} /> */}
+        </div>
+      </div>
     </div>
   );
 }
