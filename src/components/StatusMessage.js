@@ -18,14 +18,12 @@ const StatusMessage = ({ winner, current }) => {
         </div>
       }
       {!winner && !isNoMovesLeft &&
-        // `Current player is ${current.isXNext ? 'X' : 'O'}`
         <div className={`status__item ${current.isXNext ? 'colorX' : 'not_active_color'}`}>
           X
           <div className={`line ${current.isXNext ? 'bgX' : 'not_active_bg'}`}></div>
         </div>
       }
       {!winner && !isNoMovesLeft &&
-        // `Current player is ${current.isXNext ? 'X' : 'O'}`
         <div className={`status__item ${!current.isXNext ? 'colorO' : 'not_active_color'}`}>
           O
           <div className={`line ${!current.isXNext ? 'bgO' : 'not_active_bg'}`}></div>

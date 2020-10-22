@@ -46,7 +46,9 @@ function App() {
       <div>
         <div className="container__item">
           <h1>Let&rsquo;s Play the Tic-Tac-Toe Game!</h1>
-          <button onClick={onNewGame} type="button">New game</button>
+          <div className="left">
+            <button className="btn" onClick={onNewGame} type="button">New game</button>
+          </div>
         </div>
         <div className="container__item">
           <StatusMessage winner={winner} current={current} />
