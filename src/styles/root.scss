@@ -4,7 +4,8 @@ $O: #ffbc12;
 $gray: #737781;
 $shadow: #1e1920;
 $shadowSize: 3px;
-$btn: #231d25;
+$btn: #4a3c4e;
+$btnHover: #231d25;
 
 body {
   margin: 0;
@@ -40,19 +41,20 @@ button {
     transition: 0.2s;
     position: relative;
     margin-left: 16px;
+
     &:hover {
-      background-color: #4a3c4e;
+      background-color: $btnHover;
       transition: 0.2s;
     }
 
     &:hover::before {
       transition: 0.2s;
-      border-right-color: #4a3c4e;
+      border-right-color: $btnHover;
     }
 
     &:hover::after {
       transition: 0.2s;
-      border-left-color: #4a3c4e;
+      border-left-color: $btnHover;
     }
 
     &::before,
@@ -81,6 +83,16 @@ button {
       transition: 0.2s;
     }
   }
+}
+
+canvas {
+  height: 100vh;
+  pointer-events: none;
+  position: absolute;
+  top: -23%;
+  right: -15%;
+  width: 100%;
+  z-index: 2;
 }
 
 .container {
