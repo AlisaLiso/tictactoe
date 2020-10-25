@@ -7,92 +7,32 @@ $shadowSize: 3px;
 $btn: #4a3c4e;
 $btnHover: #231d25;
 
-body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Roboto Slab', serif;
-  width: 100%;
-  height: 100vh;
-  background-color: $bg;
-  color: white;
-}
-
 h1 {
   font-size: 4.125em;
   margin: 0;
   padding: 0;
 }
 
-button {
-  background: none;
-  border: none;
-  outline: none;
-
-  &:hover {
-    cursor: pointer;
-  }
-
-  &.btn {
-    height: 56px;
-    color: white;
-    font-size: 22px;
-    padding: 16px 26px;
-    background-color: $btn;
-    transition: 0.2s;
-    position: relative;
-    margin-left: 16px;
-
-    &:hover {
-      background-color: $btnHover;
-      transition: 0.2s;
-    }
-
-    &:hover::before {
-      transition: 0.2s;
-      border-right-color: $btnHover;
-    }
-
-    &:hover::after {
-      transition: 0.2s;
-      border-left-color: $btnHover;
-    }
-
-    &::before,
-    &::after {
-      content: '';
-      width: 0;
-      height: 0;
-      position: absolute;
-    }
-
-    &::before {
-      left: -16px;
-      top: 0;
-      border-top: 28px solid transparent;
-      border-right: 16px solid $btn;
-      border-bottom: 28px solid transparent;
-      transition: 0.2s;
-    }
-
-    &::after {
-      right: -16px;
-      top: 0;
-      border-top: 28px solid transparent;
-      border-left: 16px solid $btn;
-      border-bottom: 28px solid transparent;
-      transition: 0.2s;
-    }
-  }
-}
-
 canvas {
-  height: 100vh;
+  height: 90vh;
   pointer-events: none;
   position: absolute;
-  top: -23%;
-  right: -15%;
-  width: 100%;
+  top: -300%;
+  left: 50%;
+  width: 250%;
+  transform: translate(-50%, 0%);
   z-index: 2;
+
+  @media screen and (max-width: 1060px) {
+    top: -200%;
+    height: 100vh;
+    width: 100vw;
+  }
+
+  @media screen and (max-width: 774px) {
+    width: 100vw;
+    height: calc(90vw + 400%);
+  }
 }
 
 .container {
@@ -101,6 +41,7 @@ canvas {
   margin: 0 auto;
   display: flex;
   justify-content: center;
+  flex-direction: column;
   align-items: center;
 
   @media screen and (max-width: 1060px) {
@@ -139,48 +80,7 @@ canvas {
 }
 
 .board {
-  display: inline-block;
-  width: 400px;
-
-  @media screen and (max-width: 1060px) {
-    width: 80vh;
-    height: 80vh;
-  }
-
-  @media screen and (max-width: 774px) {
-    width: 100%;
-    height: 100%;
-  }
-
-  .board-row {
-    display: flex;
-    flex-direction: row;
-    border-bottom: 4px solid #211b22;
-
-    &:last-child {
-      border-bottom: none;
-    }
-  }
-
   .square {
-    width: calc(9 * 15px);
-    height: calc(9 * 15px);
-    border-right: 4px solid #211b22;
-    font-size: 6.5rem;
-    padding: 0;
-    overflow: hidden;
-    transition: all 0.2s;
-
-    @media screen and (max-width: 1060px) {
-      width: calc(80vh / 3);
-      height: calc(80vh / 3);
-    }
-
-    @media screen and (max-width: 774px) {
-      width: calc(90vw / 3);
-      height: calc(90vw / 3);
-    }
-
     .X {
       margin: 0 auto;
       width: 85%;
@@ -188,15 +88,12 @@ canvas {
       position: relative;
       transform: rotate(45deg);
       animation-duration: 0.75s;
-      animation-name: bounceIn;
+      animation-name: bounceInX;
 
       &::before,
       &::after {
         content: '';
         position: absolute;
-        background-color: $X;
-        border: 1px solid black;
-        box-shadow: $shadowSize $shadowSize 0px 0px $shadow;
       }
 
       &::after {
@@ -222,10 +119,7 @@ canvas {
       width: 85%;
       height: 85%;
       border-radius: 50%;
-      background-color: $O;
       position: relative;
-      border: 1px solid black;
-      box-shadow: $shadowSize $shadowSize 0px 0px $shadow;
       animation-duration: 0.75s;
       animation-name: bounceIn;
 
@@ -237,7 +131,6 @@ canvas {
         height: 30%;
         transform: translate(-50%, -50%);
         border-radius: 50%;
-        background-color: $bg;
         border: 1px solid black;
         width: 30%;
         box-shadow: inset $shadowSize $shadowSize 0px 0px $shadow;
@@ -250,65 +143,7 @@ canvas {
   }
 }
 
-.status {
-  width: 400px;
-  display: flex;
-  margin: 0 auto 20px;
-  font-size: 24px;
-
-  @media screen and (max-width: 1060px) {
-    width: 70%;
-  }
-
-  @media screen and (max-width: 774px) {
-    width: 100%;
-  }
-
-  &__item {
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    .line {
-      margin-top: 10px;
-      width: 100%;
-      height: 6px;
-      background-color: $X;
-    }
-
-    .bgX {
-      background-color: $X;
-    }
-
-    .bgO {
-      background-color: $O;
-    }
-
-    .not_active_bg {
-      background-color: $gray;
-    }
-  }
-
-  .full {
-    width: 100%;
-  }
-
-  .colorX {
-    color: $X;
-  }
-
-  .colorO {
-    color: $O;
-  }
-
-  .not_active_color {
-    color: $gray;
-  }
-}
-
-@keyframes bounceIn {
+@keyframes bounceInX {
   0%,
   20%,
   40%,
@@ -343,5 +178,42 @@ canvas {
   to {
     opacity: 1;
     transform: scaleX(1) rotate(45deg);
+  }
+}
+@keyframes bounceIn {
+  0%,
+  20%,
+  40%,
+  60%,
+  80%,
+  to {
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+
+  0% {
+    opacity: 0;
+    transform: scale3d(0.3, 0.3, 0.3);
+  }
+
+  20% {
+    transform: scale3d(1.1, 1.1, 1.1);
+  }
+
+  40% {
+    transform: scale3d(0.9, 0.9, 0.9);
+  }
+
+  60% {
+    opacity: 1;
+    transform: scale3d(1.03, 1.03, 1.03);
+  }
+
+  80% {
+    transform: scale3d(0.97, 0.97, 0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: scaleX(1);
   }
 }

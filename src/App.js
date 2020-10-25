@@ -1,8 +1,13 @@
+// DONE: Show 'New game' button only after first move
+// TODO: Add games hestory, not one game
+// TODO: Add light theme and switch with context API
+// DONE: Canvas with confetti not responsive and not in correct a position
 import React, { useState } from "react";
 import Board from "./components/Board";
 import History from "./components/History";
 import StatusMessage from "./components/StatusMessage";
 import { calculateWinner } from './helpers';
+import ThemeSwitcher from './components/ThemeSwitcher';
 
 import './styles/root.scss';
 
@@ -11,12 +16,14 @@ const NEW_GAME = [{ board: Array(9).fill(null), isXNext: true }];
 function App() {
   const [history, setHistory] = useState(NEW_GAME);
   const [currentMove, setCurrentMove] = useState(0);
+  const [isGameStarted, setIsGameStarted] = useState(false);
 
   const current = history[currentMove];
 
   const { winner, winnerSquares } = calculateWinner(current.board);
 
   const handleSquareClick = (position) => {
+    setIsGameStarted(true);
     if (current.board[position] || winner) return;
 
     setHistory((prev) => {
@@ -39,15 +46,19 @@ function App() {
   const onNewGame = () => {
     setHistory(NEW_GAME);
     setCurrentMove(0);
+    setIsGameStarted(false);
   }
 
   return (
     <div className="container">
+      <ThemeSwitcher />
       <div>
         <div className="container__item">
           <h1>Let&rsquo;s Play the Tic-Tac-Toe Game!</h1>
           <div className="left">
-            <button className="btn" onClick={onNewGame} type="button">New Game</button>
+            {isGameStarted &&
+              <button className="btn" onClick={onNewGame} type="button">New Game</button>
+            }
           </div>
         </div>
         <div className="container__item">

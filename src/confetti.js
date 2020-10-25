@@ -16,8 +16,8 @@ document.addEventListener('DOMContentLoaded', function () {
   const ctx = canvas.getContext('2d');
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
-  let cx = ctx.canvas.width / 2;
-  let cy = ctx.canvas.height / 2;
+  let cx = ctx.canvas.width;
+  let cy = ctx.canvas.height;
 
   // add Confetto/Sequin objects to arrays to draw them
   let confetti = [];
@@ -55,13 +55,13 @@ document.addEventListener('DOMContentLoaded', function () {
       y: randomRange(8, 15),
     }
     this.position = {
-      x: randomRange(canvas.width / 2 - button.offsetWidth / 4, canvas.width / 2 + button.offsetWidth / 4),
-      y: randomRange(canvas.height / 2 + button.offsetHeight / 2 + 8, canvas.height / 2 + (1.5 * button.offsetHeight) - 8),
+      x: randomRange(canvas.width / 2 - button.offsetWidth, canvas.width / 2 + button.offsetWidth),
+      y: randomRange(canvas.height / 5 + button.offsetHeight + 8, canvas.height / 5 + (1.5 * button.offsetHeight) - 8),
     }
     this.rotation = randomRange(0, 2 * Math.PI)
     this.scale = {
-      x: 1,
-      y: 1,
+      x: 2,
+      y: 2,
     }
     this.velocity = initConfettoVelocity([-9, 9], [6, 11])
   };
@@ -85,8 +85,8 @@ document.addEventListener('DOMContentLoaded', function () {
     this.color = colors[Math.floor(randomRange(0, colors.length))].back,
       this.radius = randomRange(1, 2),
       this.position = {
-        x: randomRange(canvas.width / 2 - button.offsetWidth / 3, canvas.width / 2 + button.offsetWidth / 3),
-        y: randomRange(canvas.height / 2 + button.offsetHeight / 2 + 8, canvas.height / 2 + (1.5 * button.offsetHeight) - 8),
+        x: randomRange(canvas.width - button.offsetWidth, canvas.width + button.offsetWidth),
+        y: randomRange(canvas.height + button.offsetHeight + 8, canvas.height + (1.5 * button.offsetHeight) - 8),
       },
       this.velocity = {
         x: randomRange(-6, 6),
@@ -132,7 +132,7 @@ document.addEventListener('DOMContentLoaded', function () {
       ctx.fillStyle = confetto.scale.y > 0 ? confetto.color.front : confetto.color.back
 
       // draw confetto
-      ctx.fillRect(-width / 2, -height / 2, width, height)
+      ctx.fillRect(-width, -height, width, height)
 
       // reset transform matrix
       ctx.setTransform(1, 0, 0, 1, 0, 0)
@@ -188,17 +188,17 @@ document.addEventListener('DOMContentLoaded', function () {
   // }
 
   // re-init canvas if the window size changes
-  // resizeCanvas = () => {
-  //   canvas.width = window.innerWidth
-  //   canvas.height = window.innerHeight
-  //   cx = ctx.canvas.width / 2
-  //   cy = ctx.canvas.height / 2
-  // }
+  resizeCanvas = () => {
+    canvas.width = window.innerWidth
+    canvas.height = window.innerHeight
+    cx = ctx.canvas.width / 2
+    cy = ctx.canvas.height / 2
+  }
 
-  // // resize listenter
-  // window.addEventListener('resize', () => {
-  //   resizeCanvas();
-  // });
+  // resize listenter
+  window.addEventListener('resize', () => {
+    resizeCanvas();
+  });
 
   // kick off the render loop
   // window.initBurst();
