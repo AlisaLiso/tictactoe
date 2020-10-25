@@ -214,56 +214,93 @@ ${({ theme }) => css`
   // Status styles and
 
   // Switch
-  .switch {
-    position: relative;
-    display: inline-block;
-    width: 60px;
-    height: 34px;
-
-    input {
-      opacity: 0;
-      width: 0;
-      height: 0;
-
-      &:checked + .slider {
-        background: ${theme.colors.switch};
-      }
-
-      &:checked + .slider:before {
-        transform: translateX(26px);
-      }
-    }
-  }
-
-  .slider {
+  .sun-icon {
     position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: ${theme.colors.switch};
-    transition: .4s;
+    height: 6em;
+    width: 6em;
+    color: ${theme.colors.lightGray};
 
-    &:before {
+    &-wrapper {
       position: absolute;
-      content: "";
-      height: 22px;
-      width: 22px;
-      left: 6px;
-      bottom: 6px;
-      background-color: white;
-      transition: .4s;
+      height: 6em;
+      width: 6em;
+      opacity: 1;
+      transform: translate(2em, 2em) rotate(15deg);
+      transform-origin: 50% 50%;
+      transition: opacity 150ms, transform 500ms cubic-bezier(.26,2,.46,.71);
     }
   }
 
-  .slider.round {
-    border-radius: 34px;
+  .moon-icon {
+    position: absolute;
+    height: 6em;
+    width: 6em;
+    color: ${theme.colors.x};
 
-    &:before {
+    &-wrapper {
+      position: absolute;
+      height: 6em;
+      width: 6em;
+      opacity: 0;
+      transform: translate(11em, 2em) rotate(0deg);
+      transform-origin: 50% 50%;
+      transition: opacity 150ms, transform 500ms cubic-bezier(.26,2.5,.46,.71);
+    }
+  }
+
+  .switch {
+    margin-top: 2em;
+
+    &-button {
+      transform: translate(11.75em, 1.75em);
+      position: absolute;
+      height: 6.5em;
+      width: 6.5em;
       border-radius: 50%;
+      background-color: ${theme.colors.lightGray};
+      box-shadow: inset 0px 0px 0px 0.75em ${theme.colors.lightGray};
+      transition: background-color 250ms, border-color 250ms, transform 500ms cubic-bezier(.26,2,.46,.71);
+    }
+
+    &-checkbox {
+      position: absolute;
+      opacity: 0;
+      cursor: pointer;
+      height: 0;
+      width: 0;
+
+      &:checked ~ .switch-slot {
+        background-color: #374151;
+      }
+
+      &:checked ~ .switch-slot .switch-button {
+        background-color: ${theme.colors.lightGray};
+        box-shadow: inset 0px 0px 0px 0.75em ${theme.colors.lightGray};
+        transform: translate(1.75em, 1.75em);
+      }
+
+      &:checked ~ .switch-slot .sun-icon-wrapper {
+        opacity: 0;
+        transform: translate(3em, 2em) rotate(0deg);
+      }
+
+      &:checked ~ .switch-slot .moon-icon-wrapper {
+        opacity: 1;
+        transform: translate(12em, 2em) rotate(-15deg);
+      }
+    }
+
+    &-slot {
+      cursor: pointer;
+      font-size: 2px;
+      position: relative;
+      height: 10em;
+      width: 20em;
+      border: 1em solid ${theme.colors.lightGray};
+      border-radius: 10em;
+      background-color: ${theme.colors.x};
+      transition: background-color 250ms;
     }
   }
-
 `}
 `

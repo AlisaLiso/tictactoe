@@ -8,9 +8,17 @@ const ThemeSwitcher = () => {
   };
 
   return <label className="switch">
-    <input type="checkbox" />
-    <span className="slider round" onClick={handleThemeChange}></span>
-  </label> // <div className="yin-yang" onClick={handleThemeChange}></div>
+    <input onChange={handleThemeChange} class='switch-checkbox' type='checkbox'></input>
+    <div class='switch-slot'>
+      <div class='sun-icon-wrapper'>
+        <div class="iconify sun-icon" data-icon="feather-sun" data-inline="false"></div>
+      </div>
+      <div class='switch-button'></div>
+      <div class='moon-icon-wrapper'>
+        <div class="iconify moon-icon" data-icon="feather-moon" data-inline="false"></div>
+      </div>
+    </div>
+  </label>
 }
 
 export default ThemeSwitcher;
