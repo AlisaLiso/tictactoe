@@ -2,11 +2,18 @@ import React, { useEffect } from 'react'
 import '../confetti';
 
 
-const StatusMessage = ({ winner, current }) => {
+const StatusMessage = ({ winner, current, score, setScore }) => {
   const isNoMovesLeft = current.board.every(elem => elem !== null);
 
   useEffect(() => {
     if (winner) {
+      setScore(prev => {
+        if (winner === 'X') {
+          return { x: ++prev.x, o: prev.o }
+        } else {
+          return { x: prev.x, o: ++prev.o }
+        }
+      });
       window.initBurst();
     }
   }, [winner]);
@@ -31,6 +38,12 @@ const StatusMessage = ({ winner, current }) => {
         <div className={`status__item ${current.isXNext ? 'colorX' : 'not_active_color'}`}>
           X
           <div className={`line ${current.isXNext ? 'bgX' : 'not_active_bg'}`}></div>
+        </div>
+      }
+      {!winner && !isNoMovesLeft &&
+        <div className="score">
+          <div className="score-item">{score.x}</div>:
+          <div className="score-item">{score.o}</div>
         </div>
       }
       {

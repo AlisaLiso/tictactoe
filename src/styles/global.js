@@ -302,5 +302,23 @@ ${({ theme }) => css`
       transition: background-color 250ms;
     }
   }
+  // Switch mode end
+
+  // Score
+  .score {
+    border: 6px solid ${theme.colors.lightGray};
+    background-color: ${theme.colors.lightGray};
+    width: 120px;
+    display: flex;
+    align-items: center;
+
+    &-item {
+      width: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+  // Score end
 `}
 `

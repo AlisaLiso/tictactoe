@@ -8,14 +8,14 @@ const ThemeSwitcher = () => {
   };
 
   return <label className="switch">
-    <input onChange={handleThemeChange} class='switch-checkbox' type='checkbox'></input>
-    <div class='switch-slot'>
-      <div class='sun-icon-wrapper'>
-        <div class="iconify sun-icon" data-icon="feather-sun" data-inline="false"></div>
+    <input onChange={handleThemeChange} className='switch-checkbox' type='checkbox'></input>
+    <div className='switch-slot'>
+      <div className='sun-icon-wrapper'>
+        <div className="iconify sun-icon" data-icon="feather-sun" data-inline="false"></div>
       </div>
-      <div class='switch-button'></div>
-      <div class='moon-icon-wrapper'>
-        <div class="iconify moon-icon" data-icon="feather-moon" data-inline="false"></div>
+      <div className='switch-button'></div>
+      <div className='moon-icon-wrapper'>
+        <div className="iconify moon-icon" data-icon="feather-moon" data-inline="false"></div>
       </div>
     </div>
   </label>
