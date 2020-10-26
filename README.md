@@ -1,9 +1,5 @@
 # Tic Tac Toe
 
-## How it works?
-
-![Example of Tic-Tac-Toe Game](src/media/example.gif)
-
 ## Development
 
 ```
