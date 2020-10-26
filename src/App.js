@@ -1,7 +1,5 @@
-// TODO: Add games hestory, not one game
 import React, { useState } from "react";
 import Board from "./components/Board";
-import History from "./components/History";
 import StatusMessage from "./components/StatusMessage";
 import { calculateWinner } from './helpers';
 import ThemeSwitcher from './components/ThemeSwitcher';
@@ -62,7 +60,6 @@ function App() {
         <div className="container__item">
           <StatusMessage winner={winner} current={current} score={score} setScore={setScore} />
           <Board board={current.board} handleSquareClick={handleSquareClick} winnerSquares={winnerSquares} />
-          {/* <History history={history} moveTo={(move) => { setCurrentMove(move) }} currentMove={currentMove} /> */}
         </div>
       </div>
     </div>
