@@ -1,5 +1,6 @@
 # Tic Tac Toe
 
+Try the [Game](https://alisaliso.com/tictactoe/)
 ![Example of Tic-Tac-Toe Game Light Theme](media/Screenshot1.png)
 ![Example of Tic-Tac-Toe Game Dark Theme](media/Screenshot2.png)
 
